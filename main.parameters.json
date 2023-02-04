@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "networkResourceGroupName": {
+      "value": "Network"
+    },
+    "devCenterResourceGroupName": {
+      "value": "DevCenter"
+    },
+    "virtualNetworkName": {
+      "value": "devcenter-vnet"
+    },
+    "virtualNetworkAddressPrefix": {
+      "value": "10.0.0.0/16"
+    },
+    "subnetAddressPrefix": {
+      "value": "10.0.0.0/24"
+    },
+    "networkSecurityGroupName": {
+      "value": "devcenter-nsg"
+    },
+    "managedIdentityName": {
+      "value": "devcenter-identity"
+    },
+    "networkConnectionName": {
+      "value": "devcenter-connection"
+    },
+    "networkingResourceGroupName": {
+      "value": "Interface"
+    },
+    "devCenterName": {
+      "value": "devcenter"
+    },
+    "computeGalleryName": {
+      "value": "images"
+    },
+    "devCenterProjects": {
+      "value": [
+        {
+          "name": "myproject",
+          "description": "My Project",
+          "admins": [
+            {
+              "id": "6c1d1052-f25d-48f4-af82-98b349826240",
+              "type": "User"
+            }
+          ],
+          "users": [
+            {
+              "id": "0072abcb-3495-44f9-a176-c5100514b704",
+              "type": "User"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
