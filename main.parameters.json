@@ -20,40 +20,26 @@
     "networkSecurityGroupName": {
       "value": "devcenter-nsg"
     },
-    "managedIdentityName": {
-      "value": "devcenter-identity"
-    },
     "networkConnectionName": {
       "value": "devcenter-connection"
     },
     "networkingResourceGroupName": {
-      "value": "Interface"
+      "value": "NetworkInterfaces"
     },
     "devCenterName": {
       "value": "devcenter"
     },
-    "computeGalleryName": {
-      "value": "images"
+    "devCenterProjectName": {
+      "value": "myproject"
     },
-    "devCenterProjects": {
-      "value": [
-        {
-          "name": "myproject",
-          "description": "My Project",
-          "admins": [
-            {
-              "id": "6c1d1052-f25d-48f4-af82-98b349826240",
-              "type": "User"
-            }
-          ],
-          "users": [
-            {
-              "id": "0072abcb-3495-44f9-a176-c5100514b704",
-              "type": "User"
-            }
-          ]
-        }
-      ]
+    "devCenterProjectDescription": {
+      "value": "My Project"
+    },
+    "devCenterProjectAdministrators": {
+      "value": []
+    },
+    "devCenterDevBoxUsers": {
+      "value": []
     }
   }
 }

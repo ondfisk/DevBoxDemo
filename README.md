@@ -2,6 +2,25 @@
 
 Basic demo to setup and run [Microsoft Dev Box](https://azure.microsoft.com/en-us/products/dev-box/).
 
+## Setup
+
+Create two new users in your Azure AD:
+
+```bash
+TENANT=...
+ADELE_PASSWORD=...
+ALEX_PASSWORD=...
+
+az ad user create --display-name "Adele Vance" --password $ADELE_PASSWORD --user-principal-name "adele@$TENANT.onmicrosoft.com"
+
+az ad user create --display-name "Alex Wilber" --password $ALEX_PASSWORD --user-principal-name "alex@$TENANT.onmicrosoft.com"
+```
+
+In `main.parameters.json`:
+
+- Add Adele's object id to `devCenterProjectAdministrators`.
+- Add Alex's object id to `devCenterDevBoxUsers`.
+
 ## Deploy
 
 To deploy demo, update `main.parameters.json` and run:
@@ -11,24 +30,6 @@ SUBSCRIPTION=...
 az account set --subscription $SUBSCRIPTION
 LOCATION=...
 az deployment sub create --location $LOCATION --template-file main.bicep --parameters @main.parameters.json
-```
-
-or
-
-```powershell
-$Subscription = "..."
-az account set --subscription $Subscription
-$Location = "..."
-az deployment sub create --location $Location --template-file main.bicep --parameters main.parameters.json
-```
-
-or
-
-```powershell
-$Subscription = "..."
-Set-AzContext -Subscription $Subscription
-$Location = "..."
-New-AzSubscriptionDeployment -Location $Location -TemplateFile .\main.bicep -TemplateParameterFile .\main.parameters.json
 ```
 
 ## View

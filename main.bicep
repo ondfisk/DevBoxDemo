@@ -9,12 +9,13 @@ param virtualNetworkAddressPrefix string
 param subnetAddressPrefix string
 param networkSecurityGroupName string
 
-param managedIdentityName string
 param networkConnectionName string
 param networkingResourceGroupName string
 param devCenterName string
-param computeGalleryName string
-param devCenterProjects array
+param devCenterProjectName string
+param devCenterProjectDescription string
+param devCenterProjectAdministrators array
+param devCenterDevBoxUsers array
 
 resource networkResourceGroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: networkResourceGroupName
@@ -43,12 +44,13 @@ module devCenter 'modules/devcenter.bicep' = {
   scope: devCenterResourceGroup
   params: {
     location: location
-    managedIdentityName: managedIdentityName
     networkConnectionName: networkConnectionName
     subnetId: network.outputs.subnetId
     networkingResourceGroupName: networkingResourceGroupName
     devCenterName: devCenterName
-    computeGalleryName: computeGalleryName
-    devCenterProjects: devCenterProjects
+    projectName: devCenterProjectName
+    projectDescription: devCenterProjectDescription
+    projectAdministrators: devCenterProjectAdministrators
+    devBoxUsers: devCenterDevBoxUsers
   }
 }
