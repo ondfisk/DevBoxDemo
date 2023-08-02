@@ -4,7 +4,7 @@ param virtualNetworkAddressPrefix string
 param subnetAddressPrefix string
 param networkSecurityGroupName string
 
-resource networkSecurityGroup 'Microsoft.Network/networkSecurityGroups@2022-07-01' = {
+resource networkSecurityGroup 'Microsoft.Network/networkSecurityGroups@2023-02-01' = {
   name: networkSecurityGroupName
   location: location
   properties: {
@@ -12,7 +12,7 @@ resource networkSecurityGroup 'Microsoft.Network/networkSecurityGroups@2022-07-0
   }
 }
 
-resource virtualNetwork 'Microsoft.Network/virtualNetworks@2022-07-01' = {
+resource virtualNetwork 'Microsoft.Network/virtualNetworks@2023-02-01' = {
   name: virtualNetworkName
   location: location
   properties: {

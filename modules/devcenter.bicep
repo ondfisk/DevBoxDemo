@@ -11,28 +11,16 @@ param devBoxUsers array
 var devboxdefinitions = [
   {
     name: 'Win11'
-    imageId: 'microsoftwindowsdesktop_windows-ent-cpc_win11-22h2-ent-cpc-os'
-    skuName: 'general_a_8c32gb_v1'
-    osStorageType: 'ssd_256gb'
-  }
-  {
-    name: 'Win11-M365'
-    imageId: 'microsoftwindowsdesktop_windows-ent-cpc_win11-22h2-ent-cpc-m365'
-    skuName: 'general_a_8c32gb_v1'
-    osStorageType: 'ssd_256gb'
-  }
-  {
-    name: 'Win11-VS2022-M365'
-    imageId: 'microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2'
-    skuName: 'general_a_8c32gb_v1'
-    osStorageType: 'ssd_256gb'
+    imageId: 'microsoftvisualstudio_windowsplustools_base-win11-gen2'
+    skuName: 'general_i_8c32gb256ssd_v2'
+    hibernateSupport: 'Enabled'
   }
 ]
 
 var devCenterProjectAdmin = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '331c37c6-af14-46d9-b9f4-e1909e1b95a0')
 var devCenterDevBoxUser = subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '45d50f46-0b78-4001-a660-4198cbe8cd05')
 
-resource networkConnection 'Microsoft.DevCenter/networkConnections@2022-09-01-preview' = {
+resource networkConnection 'Microsoft.DevCenter/networkConnections@2023-04-01' = {
   name: networkConnectionName
   location: location
   properties: {
@@ -42,7 +30,7 @@ resource networkConnection 'Microsoft.DevCenter/networkConnections@2022-09-01-pr
   }
 }
 
-resource devCenter 'Microsoft.DevCenter/devcenters@2022-11-11-preview' = {
+resource devCenter 'Microsoft.DevCenter/devcenters@2023-04-01' = {
   name: devCenterName
   location: location
   identity: {
@@ -67,12 +55,12 @@ resource devCenter 'Microsoft.DevCenter/devcenters@2022-11-11-preview' = {
       sku: {
         name: definition.skuName
       }
-      osStorageType: definition.osStorageType
+      hibernateSupport: definition.hibernateSupport
     }
   }]
 }
 
-resource project 'Microsoft.DevCenter/projects@2022-11-11-preview' = {
+resource project 'Microsoft.DevCenter/projects@2023-04-01' = {
   name: projectName
   location: location
   properties: {

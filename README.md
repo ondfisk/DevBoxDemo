@@ -6,14 +6,15 @@ Basic demo to setup and run [Microsoft Dev Box](https://azure.microsoft.com/en-u
 
 Create two new users in your Azure AD:
 
-```bash
-TENANT=...
-ADELE_PASSWORD=...
-ALEX_PASSWORD=...
+```powershell
+$tenantName = ...
+$adelePassword = ...
+$alexPassword = ...
 
-az ad user create --display-name "Adele Vance" --password $ADELE_PASSWORD --user-principal-name "adele@$TENANT.onmicrosoft.com"
+az login --tenant "$tenantName.onmicrosoft.com"
+az ad user create --display-name "Adele Vance" --password $adelePassword --user-principal-name "adele@$tenantName.onmicrosoft.com"
 
-az ad user create --display-name "Alex Wilber" --password $ALEX_PASSWORD --user-principal-name "alex@$TENANT.onmicrosoft.com"
+az ad user create --display-name "Alex Wilber" --password $alexPassword --user-principal-name "alex@$tenantName.onmicrosoft.com"
 ```
 
 In `main.parameters.json`:
@@ -23,13 +24,14 @@ In `main.parameters.json`:
 
 ## Deploy
 
-To deploy demo, update `main.parameters.json` and run:
+To deploy demo, update `main.bicepparam` and run:
 
-```bash
-SUBSCRIPTION=...
-az account set --subscription $SUBSCRIPTION
-LOCATION=...
-az deployment sub create --location $LOCATION --template-file main.bicep --parameters @main.parameters.json
+```powershell
+$subscriptionName = ...
+$location = ... # australiaeast, japaneast, canadacentral, uksouth, westeurope, eastus, eastus2, southcentralus, westus3 As of August 2023
+
+az account set --subscription $subscriptionName
+az deployment sub create --location $location --template-file .\main.bicep --parameters .\main.bicepparam
 ```
 
 ## View
