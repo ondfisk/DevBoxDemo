@@ -17,12 +17,12 @@ param devCenterProjectDescription string
 param devCenterProjectAdministrators array
 param devCenterDevBoxUsers array
 
-resource networkResourceGroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
+resource networkResourceGroup 'Microsoft.Resources/resourceGroups@2023-07-01' = {
   name: networkResourceGroupName
   location: location
 }
 
-resource devCenterResourceGroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
+resource devCenterResourceGroup 'Microsoft.Resources/resourceGroups@2023-07-01' = {
   name: devCenterResourceGroupName
   location: location
 }
