@@ -24,14 +24,20 @@ In `main.parameters.json`:
 
 ## Deploy
 
-To deploy demo, update `main.bicepparam` and run:
+Pick a supported location using:
 
-```powershell
-$subscriptionName = ...
-$location = ... # australiaeast, japaneast, canadacentral, uksouth, westeurope, eastus, eastus2, southcentralus, westus3 As of August 2023
+```bash
+az provider show --name "Microsoft.DevCenter" --query "resourceTypes[?resourceType=='devcenters'].locations"
+```
 
-az account set --subscription $subscriptionName
-az deployment sub create --location $location --template-file .\main.bicep --parameters .\main.bicepparam
+Update `main.bicepparam` and run:
+
+```bash
+SUBSCRIPTION=...
+LOCATION=...
+
+az account set --subscription $SUBSCRIPTION
+az deployment sub create --location $LOCATION --template-file main.bicep --parameters main.bicepparam
 ```
 
 ## View
