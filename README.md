@@ -4,25 +4,7 @@ Basic demo to setup and run [Microsoft Dev Box](https://azure.microsoft.com/en-u
 
 ## Setup
 
-Create two new users in your Azure AD:
-
-```powershell
-$tenantName = ...
-$adelePassword = ...
-$alexPassword = ...
-
-az login --tenant "$tenantName.onmicrosoft.com"
-az ad user create --display-name "Adele Vance" --password $adelePassword --user-principal-name "adele@$tenantName.onmicrosoft.com"
-
-az ad user create --display-name "Alex Wilber" --password $alexPassword --user-principal-name "alex@$tenantName.onmicrosoft.com"
-```
-
-In `main.parameters.json`:
-
-- Add Adele's object id to `devCenterProjectAdministrators`.
-- Add Alex's object id to `devCenterDevBoxUsers`.
-
-## Deploy
+Create users and optionally project admins in Entra ID.
 
 Pick a supported location using:
 
@@ -30,14 +12,16 @@ Pick a supported location using:
 az provider show --name "Microsoft.DevCenter" --query "resourceTypes[?resourceType=='devcenters'].locations"
 ```
 
-Update `main.bicepparam` and run:
+Update [`main.bicepparam`](./main.bicepparam) and run:
 
 ```bash
 SUBSCRIPTION=...
 LOCATION=...
+RESOURCE_GROUP="DevCenter"
 
 az account set --subscription $SUBSCRIPTION
-az deployment sub create --location $LOCATION --template-file main.bicep --parameters main.bicepparam
+az group create --name $RESOURCE_GROUP --location $LOCATION
+az deployment group create --resource-group $RESOURCE_GROUP --template-file main.bicep --parameters main.bicepparam
 ```
 
 ## View
@@ -46,7 +30,7 @@ As a subscription owner, go to <https://portal.azure.com/> to validate deploymen
 
 ## Manage
 
-As a *Dev Center Project Administrator*, go to <https://aka.ms/devbox> to manage projects.
+As a *Dev Center Project Administrator*, go to <https://portal.azure.com/> to manage your projects.
 
 ## Run
 

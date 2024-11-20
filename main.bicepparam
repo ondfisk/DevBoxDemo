@@ -1,41 +1,44 @@
-using './main.bicep' /*TODO: Provide a path to a bicep template*/
-
-param networkResourceGroupName = 'Network'
-
-param devCenterResourceGroupName = 'DevCenter'
-
-param virtualNetworkName = 'devcenter-vnet'
-
-param virtualNetworkAddressPrefix = '10.0.0.0/16'
-
-param subnetAddressPrefix = '10.0.0.0/24'
-
-param networkSecurityGroupName = 'devcenter-nsg'
-
-param networkConnectionName = 'devcenter-connection'
-
-param networkingResourceGroupName = 'NetworkInterfaces'
+using './main.bicep'
 
 param devCenterName = 'devcenter'
 
-param devCenterProjectName = 'myproject'
+param projectName = 'myproject'
 
-param devCenterProjectDescription = 'My Project'
+param projectDescription = 'My Project'
 
-param devCenterProjectAdministrators = [
+param projectAdministrators = [
   {
-    id: '99031c8f-8e21-47b6-b477-304c37a7b10d'
+    id: '90ef115c-e3dd-4c7e-8712-1abeb515a88e'
     type: 'User'
   }
 ]
 
-param devCenterDevBoxUsers = [
+param devBoxUsers = [
   {
-    id: '99031c8f-8e21-47b6-b477-304c37a7b10d'
+    id: '90ef115c-e3dd-4c7e-8712-1abeb515a88e'
     type: 'User'
   }
+]
+
+param devboxDefinitions = [
   {
-    id: '95eb9635-41c1-45b3-992b-37d18b37205f'
-    type: 'User'
+    displayName: 'Windows 11'
+    name: 'Win11'
+    imageId: 'microsoftwindowsdesktop_windows-ent-cpc_win11-23h2-ent-cpc'
+    skuName: 'general_i_8c32gb256ssd_v2'
+    hibernateSupport: 'Enabled'
+    locations: [
+      'swedencentral'
+    ]
+  }
+  {
+    displayName: 'Visual Studio 2022 on Windows 11'
+    name: 'VisualStudio2022onWin11'
+    imageId: 'microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2'
+    skuName: 'general_i_8c32gb256ssd_v2'
+    hibernateSupport: 'Enabled'
+    locations: [
+      'swedencentral'
+    ]
   }
 ]
