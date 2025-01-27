@@ -2,9 +2,9 @@ using './main.bicep'
 
 param devCenterName = 'devcenter'
 
-param projectName = 'myproject'
+param projectName = 'project'
 
-param projectDescription = 'My Project'
+param projectDescription = 'Project'
 
 param projectAdministrators = [
   {
@@ -23,8 +23,8 @@ param devBoxUsers = [
 param devboxDefinitions = [
   {
     displayName: 'Windows 11'
-    name: 'Win11'
-    imageId: 'microsoftwindowsdesktop_windows-ent-cpc_win11-23h2-ent-cpc'
+    name: 'win11'
+    imageId: 'microsoftvisualstudio_windowsplustools_base-win11-gen2'
     skuName: 'general_i_8c32gb256ssd_v2'
     hibernateSupport: 'Enabled'
     locations: [
@@ -33,7 +33,7 @@ param devboxDefinitions = [
   }
   {
     displayName: 'Visual Studio 2022 on Windows 11'
-    name: 'VisualStudio2022onWin11'
+    name: 'vs2022'
     imageId: 'microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2'
     skuName: 'general_i_8c32gb256ssd_v2'
     hibernateSupport: 'Enabled'

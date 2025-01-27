@@ -8,25 +8,31 @@ Create users and optionally project admins in Entra ID.
 
 Pick a supported location using:
 
-```bash
+```pwsh
 az provider show --name "Microsoft.DevCenter" --query "resourceTypes[?resourceType=='devcenters'].locations"
 ```
 
 Update [`main.bicepparam`](./main.bicepparam) and run:
 
-```bash
-SUBSCRIPTION=...
-LOCATION=...
-RESOURCE_GROUP="DevCenter"
+```pwsh
+$SUBSCRIPTION = ...
+$LOCATION = ...
+$RESOURCE_GROUP = "DevBox"
 
 az account set --subscription $SUBSCRIPTION
 az group create --name $RESOURCE_GROUP --location $LOCATION
 az deployment group create --resource-group $RESOURCE_GROUP --template-file main.bicep --parameters main.bicepparam
 ```
 
-## View
+## Administer
 
 As a subscription owner, go to <https://portal.azure.com/> to validate deployment.
+
+Install the AZ CLI `devcenter` extension to manage the dev center from the command line:
+
+```pwsh
+az extension add --name devcenter
+```
 
 ## Manage
 
